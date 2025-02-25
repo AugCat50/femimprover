@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class PostTag extends Model
 {
-    //Явная привязка модели к имени таблицы
+    use HasFactory;
+
     protected $table   = 'post_tags';
-    protected $quarded = false;
+    
+    //Аналог fillable, просто отключает защиту на запись всех полей
+    protected $guarded = false; 
 }

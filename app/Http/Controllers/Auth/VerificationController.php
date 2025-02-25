@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class VerificationController extends Controller
@@ -22,10 +23,12 @@ class VerificationController extends Controller
 
     /**
      * Where to redirect users after verification.
+     * Здесь можно сделать редирект на личную страницу пользователя
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.

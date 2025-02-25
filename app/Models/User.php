@@ -3,30 +3,50 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use App\Notifications\SendVerifyWithQueueNotification;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
+
+    const ROLE_ADMIN  = 0;
+    const ROLE_READER = 1;
+    const ROLE_WRITER = 2;
+
+    public static function getRoles()
+    {
+        //mapping - соответсвие, подмена констант на строки для view
+        return [
+            self::ROLE_ADMIN  => 'Админ',
+            self::ROLE_READER => 'Читатель',
+            self::ROLE_WRITER => 'Автор'
+        ];
+    }
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role'
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $hidden = [
         'password',
@@ -34,15 +54,36 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Переопределение шаблона отправки письма
+     */
+    public function sendEmailVerificationNotification()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        $this->notify(new SendVerifyWithQueueNotification());
+    }
+
+    /**
+     * Работа с отношением польвзователя и его понравившихся постов (многие ко многим)
+     */
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_user_likes', 'user_id', 'post_id');
+    }
+
+    /**
+     * Работа с отношением пользователя с его комментариями (один ко многим)
+     * related , foreignLey , localKey
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id', 'id');
     }
 }
