@@ -64,6 +64,8 @@
                             @enderror
                         </div>
 
+                        <input type="hidden" name="user_id" value="{{ $user->id }}">
+
                         <input type="submit" class="btn btn-primary" value="Добавить">
                     </form>
                 </div>

@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'name'     => 'required|string|unique:users',
             'email'    => 'required|email|unique:users',
-            // 'password' => 'required|string',
+            'password' => 'required|string',
             'role'     => 'required|integer'
         ];
     }
@@ -47,10 +47,10 @@ class StoreRequest extends FormRequest
             'email.email'    => 'Почта должна соответствовать формату email@some.domain',
             'email.unique'   => 'Пользователь с такой почтой уже существует',
             'role.required'  => 'Необходимо назначить роль',
-            'role.integer'   => 'Роль должна содержать целое число. Обратитесь к администратору сайта.'
+            'role.integer'   => 'Роль должна содержать целое число. Обратитесь к администратору сайта.',
 
-            // 'password.required' => 'Поле должно быть заполнено',
-            // 'password.string'   => 'Пароль должен быть строкой',
+            'password.required' => 'Поле должно быть заполнено',
+            'password.string'   => 'Пароль должен быть строкой',
         ];
     }
 }

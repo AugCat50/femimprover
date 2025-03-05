@@ -5,3 +5,12 @@
 .admin-post-content *{
     white-space: normal !important;
   }
+
+.custom-file-input:hover{
+    cursor: pointer;
+}
+
+/* Vue Dropzone */
+.dropzone{
+    min-width: 300px;
+}

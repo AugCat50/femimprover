@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 
 class DeleteController extends Controller
 {
-    //Метод по умолчанию.
+    /**
+    *   Отсоединение поста от пользователя
+    **/
     public function __invoke(Post $post)
     {
         //likedPosts() - со скобками запрос в базу. Без скобок - получение коллекции

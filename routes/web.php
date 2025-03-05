@@ -22,6 +22,15 @@ Route::group(['namespace' => 'App\Http\Controllers\BlogCategory', 'prefix' => 'c
     Route::get('/{category}', 'ShowController') ->name('category.show');
 });
 
+//Роуты статичных страниц
+Route::group(['namespace' => 'App\Http\Controllers\Pages', 'prefix' => 'pages'], function () {
+    Route::get('/'        , 'IndexPageController')   ->name('pages.index');
+    Route::get('/services', 'ServicesPageController')->name('pages.services');
+    Route::get('/aboutus' , 'AboutUsPageController') ->name('pages.aboutus');
+    Route::get('/work'    , 'WorkPageController')    ->name('pages.work');
+    Route::get('/contacts', 'ContactsPageController')->name('pages.contacts');
+});
+
 // Роуты блога
 Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], function () {
     Route::get('/'      , 'IndexController')   ->name('blog.post.index');
@@ -45,8 +54,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
 //     Route::get('/post');
 // });
 
-// Роуты админ панели 'auth', 'admin', 'verified'
-Route::middleware([])->group(function () {
+// Роуты админ панели
+Route::middleware(['auth', 'admin', 'verified'])->group(function () {
     Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin'], function() {
         Route::group(['namespace' => 'Main'], function () {
             Route::get('/', 'IndexController')->name('admin.main.index');
@@ -80,6 +89,11 @@ Route::middleware([])->group(function () {
             Route::get   ('/{post}/edit'  , 'EditController')  ->name('admin.post.edit');
             Route::patch ('/{post}/update', 'UpdateController')->name('admin.post.update');
             Route::delete('/{post}/delete', 'DeleteController')->name('admin.post.delete');
+            Route::post  ('/store'             , 'StoreController') ->name('admin.post.store');
+
+            // Route::post  ('/'             , function () {
+            //     dd('hello');
+            // })->name('admin.post.store');
         });
 
         Route::group(['namespace' => 'User', 'prefix' => 'users'], function () {
@@ -107,10 +121,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
         });
 
         Route::group(['namespace' => 'Comment'], function () {
-            Route::get   ('/comment'         , 'IndexController')  ->name('personal.comment.index');
-            Route::get   ('/{comment}/edit'  , 'EditController')   ->name('personal.comment.edit');
-            Route::patch ('/{comment}'       , 'UpdateController') ->name('personal.comment.update');
-            Route::delete('/{comment}/delete', 'DeleteController') ->name('personal.comment.delete');
+            Route::get   ('/comment'         , 'IndexController') ->name('personal.comment.index');
+            Route::get   ('/{comment}/edit'  , 'EditController')  ->name('personal.comment.edit');
+            Route::patch ('/{comment}'       , 'UpdateController')->name('personal.comment.update');
+            Route::delete('/{comment}/delete', 'DeleteController')->name('personal.comment.delete');
         });
     });
 });

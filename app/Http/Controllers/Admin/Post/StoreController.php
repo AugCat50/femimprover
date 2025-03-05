@@ -9,13 +9,18 @@ use Illuminate\Support\Facades\Storage;
 
 class StoreController extends BaseController
 {
-    //Метод по умолчанию.
-    public function __invoke(StoreRequest $request)
+    //Метод по умолчанию. StoreRequest $request
+    public function __invoke()
     {
-        $data = $request->validated();
-        
-        $this->service->store($request, $data);
+        dd('lox');
+        dump (\request()->all());
 
-        return redirect()->route('admin.post.index');
+        return response(['message' => 'ok']);
+
+        // $data = $request->validated();
+        
+        // $this->service->store($request, $data);
+
+        // return redirect()->route('admin.post.index');
     }
 }

@@ -27,6 +27,7 @@ class UpdateRequest extends FormRequest
             //Выяснить как работает эта магия $this->user->id. См доки по валидации
             'name'  => 'required|string|unique:users,name,'.$this->user->id,
             'email' => 'required|email|unique:users,email,'.$this->user->id,
+            // 'user_id' => 'required|integer|exists:users.id',
             'role'  => 'required|integer'
         ];
     }

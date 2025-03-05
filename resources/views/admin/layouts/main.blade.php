@@ -48,6 +48,10 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
+                <!-- Имя текущего пользователя -->
+                <li class="nav-item d-none d-sm-inline-block">
+                    <p class="nav-link">{{ auth()->user()->name }}</p>
+                </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="{{ route('main.index') }}" class="nav-link">Главная</a>
                 </li>
@@ -56,7 +60,7 @@
                 </li> -->
 
                 <li class="nav-item d-none d-sm-inline-block">
-                    <form action="{{ route('logout') }}" method="post">
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <input class="btn btn-outline-primary" type="submit" value="Выйти">
                     </form>
@@ -254,6 +258,12 @@
     <!-- Смена текста в кнопке Browse кастом файл лоадера -->
     <style>
         .custom-file-input:lang(en)~.custom-file-label::after {
+            content: '...';
+        }
+        .custom-file-input:lang(ru)~.custom-file-label::after {
+            content: '...';
+        }
+        .custom-file-input:lang(ua)~.custom-file-label::after {
             content: '...';
         }
     </style>

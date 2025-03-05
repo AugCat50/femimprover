@@ -24,6 +24,26 @@
                                 <a href="single-post.html" class="img-bg d-flex align-items-end"
                                     style="background-image: url('assets/img/slider/slide-9.jpg');">
                                     <div class="img-bg-inner">
+                                        <h2>Укладка Плитки</h2>
+                                        <p>Взгляните на наши работы</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <a href="single-post.html" class="img-bg d-flex align-items-end"
+                                    style="background-image: url('assets/img/slider/slide-9.jpg');">
+                                    <div class="img-bg-inner">
+                                        <h2>Асфальтирование</h2>
+                                        <p>Под ключ, 1200 грн м2</p>
+                                    </div>
+                                </a>
+                            </div>
+
+                            <div class="swiper-slide">
+                                <a href="single-post.html" class="img-bg d-flex align-items-end"
+                                    style="background-image: url('assets/img/slider/slide-9.jpg');">
+                                    <div class="img-bg-inner">
                                         <h2>Портфолио</h2>
                                         <p>Взгляните на наши работы</p>
                                     </div>
@@ -81,14 +101,41 @@
     </section><!-- End Hero Slider Section -->
 
     <section class="about">
-        <img href="" alt="its me">
-        <p>За 17 лет я прошёл путь от подсобника до трёх собственных бригад в Киеве, Днепре и Николаеве. Укладка плитки - моё ремесло, и я всегда даю гарантию на свою работу. Я гарантирую:</p>
+        <div class="container-md" data-aos="fade-in">
+            <h2 class="about__h2">Меня зовут Артём</h2>
+            <div class="row g-5 about__row">
+                <img class="about__person-image" src="{{ asset('assets/img/main/1.jpg') }}" alt="its me">
+                <p class="about__text">За 17 лет я прошёл путь от подсобника до трёх собственных бригад в Киеве, Днепре и Николаеве. Укладка плитки - моё ремесло, и я всегда даю гарантию на свою работу. Моя бригада - это:</p>
 
-        <ul>
-            <li>Профессиональный подход</li>
-            <li>Выполнение обязательств</li>
-            <li>Полную комплектацию объектов</li>
-        </ul>
+                <ul class="about__ul">
+                    <li class="about__li"><i class="bi bi-chevron-right"></i> Профессиональный подход</li>
+                    <li class="about__li"><i class="bi bi-chevron-right"></i> Выполнение обязательств</li>
+                    <li class="about__li"><i class="bi bi-chevron-right"></i> Полная комплектация объектов</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="phone_form contact">
+        <div class="container" data-aos="fade-up">
+            <div class="row g-5">
+                <h2 class="phone_form__h2">Оставьте номер, и я перезвоню</h2>
+                <form class="php-email-form" action="#" method="POST">
+                    @csrf
+                    <div class="col-md-auto text-center">
+                        <label for="phone">Пожалуйста, цените своё и моё время.<br>Формат: 050-555-5555</label>
+                        <input class="col-md-6 phone_form__input text-center" type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required placeholder="050-555-5555"> 
+                    </div>
+                    <div class="col-md-auto text-center">
+                        <div class="loading">Loading</div>
+                        <div class="error-message"></div>
+                        <div class="sent-message">Your message has been sent. Thank you!</div>
+      
+                        <button class="phone_form__button" type="submit">Отправить</button>
+                      </div>
+                </form>
+            </div>
+        </div>
     </section>
 
     <!-- ======= Post Grid Section ======= -->
@@ -97,14 +144,14 @@
             <div class="row g-5">
                 <div class="col-lg-4">
                     <div class="post-entry-1 lg">
-                        <a href="single-post.html"><img src="assets/img/post-landscape-1.jpg" alt=""
+                        <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-1.jpg' ) }}" alt=""
                                 class="img-fluid"></a>
-                        <h2 class="main-tile-button"><a href="single-post.html">Галерея плитки</a></h2>
+                        <h2 class="main-tile-button"><a href="single-post.html">Укаладка плитки</a></h2>
                     </div>
                     <div class="post-entry-1 lg">
-                        <a href="single-post.html"><img src="assets/img/post-landscape-1.jpg" alt=""
+                        <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-1.jpg' ) }}" alt=""
                                 class="img-fluid"></a>
-                        <h2 class="main-tile-button"><a href="single-post.html">Блок</a></h2>
+                        <h2 class="main-tile-button"><a href="single-post.html">Асфальтирование</a></h2>
                     </div>
                 </div>
 
@@ -112,42 +159,42 @@
                     <div class="row g-5">
                         <div class="col-lg-4 border-start custom-border">
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="assets/img/post-landscape-2.jpg" alt=""
+                                <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-2.jpg' ) }}" alt=""
                                         class="img-fluid"></a>
                                 <!-- <div class="post-meta"><span class="date">Sport</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div> -->
                                 <h2 class="main-tile-button"><a href="single-post.html">Борбюры</a></h2>
                             </div>
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="assets/img/post-landscape-5.jpg" alt=""
+                                <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-5.jpg' ) }}" alt=""
                                         class="img-fluid"></a>
                                 <!-- <div class="post-meta"><span class="date">Food</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div> -->
-                                <h2 class="main-tile-button"><a href="single-post.html">Проекты</a></h2>
+                                <h2 class="main-tile-button"><a href="single-post.html">Бетонирование</a></h2>
                             </div>
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="assets/img/post-landscape-7.jpg" alt=""
+                                <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-7.jpg' ) }}" alt=""
                                         class="img-fluid"></a>
                                 <!-- <div class="post-meta"><span class="date">Design</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div> -->
-                                <h2 class="main-tile-button"><a href="single-post.html">Стройматериалы</a></h2>
+                                <h2 class="main-tile-button"><a href="single-post.html">Щебенение</a></h2>
                             </div>
                         </div>
                         <div class="col-lg-4 border-start custom-border">
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="assets/img/post-landscape-3.jpg" alt=""
+                                <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-3.jpg' ) }}" alt=""
                                         class="img-fluid"></a>
                                 <!-- <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div> -->
-                                <h2 class="main-tile-button"><a href="single-post.html">Блок</a></h2>
+                                <h2 class="main-tile-button"><a href="single-post.html">Галерея плитки</a></h2>
                             </div>
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="assets/img/post-landscape-6.jpg" alt=""
+                                <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-6.jpg' ) }}" alt=""
                                         class="img-fluid"></a>
                                 <!-- <div class="post-meta"><span class="date">Tech</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div> -->
-                                <h2 class="main-tile-button"><a href="single-post.html">Блок</a></h2>
+                                <h2 class="main-tile-button"><a href="single-post.html">Демонтаж</a></h2>
                             </div>
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="assets/img/post-landscape-8.jpg" alt=""
+                                <a href="single-post.html"><img src="{{ asset( 'assets/img/post-landscape-8.jpg' ) }}" alt=""
                                         class="img-fluid"></a>
                                 <!-- <div class="post-meta"><span class="date">Travel</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div> -->
-                                <h2 class="main-tile-button"><a href="single-post.html">Блок</a></h2>
+                                <h2 class="main-tile-button"><a href="single-post.html">Прочее</a></h2>
                             </div>
                         </div>
 
@@ -155,48 +202,32 @@
                         <div class="col-lg-4">
 
                             <div class="trending">
-                                <h3>Экспертное мнение</h3>
+                                <h2 class="trending__h">Экспертное мнение</h2>
                                 <ul class="trending-post">
                                     <li>
                                         <a href="single-post.html">
                                             <span class="number">1</span>
-                                            <h3>Бетон обязателен?</h3>
-                                            <p>Узнайте когда под укладку необходим бетон, а когда можно обойтись
-                                                подушкой щебня</p>
+                                            <h3 class="trending-post__h3">Бетон обязателен?</h3>
+                                            <p class="trending-post__p">Узнайте когда под укладку необходим бетон, а когда можно обойтись подушкой щебня</p>
                                             <!-- <span class="author">Jane Cooper</span> -->
                                         </a>
                                     </li>
                                     <li>
                                         <a href="single-post.html">
                                             <span class="number">2</span>
-                                            <h3>Толщина</h3>
-                                            <p>Сегодня поговорим о том, как правильно учать нагрузу при выборе плитки
-                                            </p>
+                                            <h3 class="trending-post__h3">Толщина</h3>
+                                            <p class="trending-post__p">Сегодня поговорим о том, как правильно учать нагрузу при выборе плитки </p>
                                             <!-- <span class="author">Wade Warren</span> -->
                                         </a>
                                     </li>
                                     <li>
                                         <a href="single-post.html">
                                             <span class="number">3</span>
-                                            <h3>Вибролитьё и пресование</h3>
-                                            <p>Всё, что вы хотели знать о ньюансах производства брусчатки</p>
+                                            <h3 class="trending-post__h3">Вибролитьё и пресование</h3>
+                                            <p class="trending-post__p">Всё, что вы хотели знать о ньюансах производства брусчатки</p>
                                             <!-- <span class="author">Esther Howard</span> -->
                                         </a>
                                     </li>
-                                    <!-- <li>
-                  <a href="single-post.html">
-                    <span class="number">4</span>
-                    <h3>9 Half-up/half-down Hairstyles for Long and Medium Hair</h3>
-                    <span class="author">Cameron Williamson</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="single-post.html">
-                    <span class="number">5</span>
-                    <h3>Life Insurance And Pregnancy: A Working Mom’s Guide</h3>
-                    <span class="author">Jenny Wilson</span>
-                  </a>
-                </li> -->
                                 </ul>
                             </div>
 
@@ -208,8 +239,18 @@
         </div>
     </section> <!-- End Post Grid Section -->
 
-
-
+    {{-- <section class="about">
+        <div class="container-md" data-aos="fade-in">
+            <h2 class="about__h2">Цены в 2025 году</h2>
+            <div class="row g-5 about__row">
+                <ul class="about__ul">
+                    <li class="about__li"><i class="bi bi-chevron-right"></i> Укладка плитки, от 1200 грн м2</li>
+                    <li class="about__li"><i class="bi bi-chevron-right"></i> Асфальтирование, от 1200 грн м2</li>
+                    <li class="about__li"><i class="bi bi-chevron-right"></i> Бетонирование, от 1200 грн м2</li>
+                </ul>
+            </div>
+        </div>
+    </section> --}}
 </main><!-- End #main -->
 
 @endsection

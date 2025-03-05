@@ -27,7 +27,7 @@
             <!-- Small boxes (Stat box) -->
             <div class="row">
                 <div class="col-12">              
-                    <form action="{{ route('admin.post.store') }}" method="POST" class="" enctype="multipart/form-data">
+                    <form action="{{ route('admin.post.store') }}" method="POST" class="dropzone" enctype="multipart/form-data" id="upload-form">
                         @csrf
                         <div class="form-group w-25">
                             <label>Название поста</label>
@@ -58,7 +58,7 @@
                                 <!-- В name обязательно массив, чтобы получать массив значений, а не только последнее выбранное -->
                                 <select class="select2" name="tag_ids[]" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">
                                     @foreach ($tags as $tag)
-                                        <!-- Если tag_ids массив, то ищем в нём вовпадение с tag->id, если есть возвращаем selected -->
+                                        <!-- Если tag_ids массив, то ищем в нём cовпадение с tag->id, если есть возвращаем selected -->
                                         <option 
                                             {{ is_array( old('tag_ids') ) && in_array($tag->id, old('tag_ids')) ? ' selected' : '' }} 
                                             value="{{ $tag->id }}"
@@ -75,26 +75,37 @@
                         <div class="form-group w-25">
                             <label for="exampleInputFile">Изображение превью</label>
                             <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="preview_image">
-                                <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Загрузить</span>
-                            </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="preview_image">
+                                    <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Загрузить</span>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group w-25">
                             <label for="exampleInputFile">Главное изображение</label>
                             <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" name="main_image">
-                                <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" name="main_image">
+                                    <label class="custom-file-label" for="exampleInputFile">Выберите файл</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Загрузить</span>
+                                </div>
                             </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Загрузить</span>
-                            </div>
+                        </div>
+
+                        <div class="form-group w-25">
+                            <label for="exampleInputFile">Галерея Dropzone</label>
+                            <div class="input-group">
+                                <div id="app" class="dropzone">
+                                    <dropzone-component></dropzone-component>
+                                    Vue component
+                                </div>
+                                {{-- <div class="previews"></div> --}}
                             </div>
                         </div>
 

@@ -21,9 +21,14 @@ class User extends Authenticatable implements MustVerifyEmail
     const ROLE_READER = 1;
     const ROLE_WRITER = 2;
 
+    /**
+     * mapping - соответсвие, подмена констант ROLE на строки для view
+     * 
+     * @return array 
+     */
     public static function getRoles()
     {
-        //mapping - соответсвие, подмена констант на строки для view
+        //
         return [
             self::ROLE_ADMIN  => 'Админ',
             self::ROLE_READER => 'Читатель',

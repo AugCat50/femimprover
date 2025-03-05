@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
 {
@@ -18,6 +19,7 @@ class IndexController extends Controller
         $data['postsCount']      = Post::all()    ->count();
         $data['categoriesCount'] = Category::all()->count();
         $data['tagsCount']       = Tag::all()     ->count();
+        // $data['userName']        = Auth::user()   ->name;
         return view('admin.main.index', compact('data'));
     }
 }

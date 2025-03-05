@@ -75,9 +75,9 @@
       <nav id="navbar" class="navbar">
         <ul>
           <!-- <li><a href="index.html">Главная</a></li> -->
-          <li><a href="about.html">Портфолио</a></li>
+          {{-- <li><a href="about.html">Портфолио</a></li> --}}
 
-          <li class="dropdown"><a href="{{ route('blog.post.index') }}"><span>Блог</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown"><a href="{{ route('blog.post.index') }}"><span>Портфолио</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             @if($categories->count())
             <ul>
               @foreach($categories as $category)
@@ -87,9 +87,10 @@
             @endif
           </li>
 
-          <li><a href="#">Услуги</a></li>
-          <li><a href="about.html">О нас</a></li>
-          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="{{ route('pages.services') }}">Услуги</a></li>
+          <li><a href="{{ route('pages.aboutus')  }}">О нас</a></li>
+          {{-- <li><a href="{{ route('pages.work')     }}">Работа</a></a></li> --}}
+          <li><a href="{{ route('pages.contacts') }}">Контакты</a></li>
           @auth
           <li><a href="{{ route('personal.main.index') }}">{{ auth()->user()->name }}</a></li>
           @endauth
@@ -105,11 +106,11 @@
       </div>
 
       <div class="position-relative">
-        <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-        <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-        <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
+        <a href="#" class="mx-2 nav__icon"><span class="bi-facebook"></span></a>
+        <a href="#" class="mx-2 nav__icon"><span class="bi-telegram"></span></a>
+        <a href="#" class="mx-2 nav__icon"><span class="bi-instagram"></span></a>
 
-        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+        <a href="#" class="mx-2 nav__icon js-search-open"><span class="bi-search"></span></a>
         <i class="bi bi-list mobile-nav-toggle"></i>
 
         <!-- ======= Search Form ======= -->
@@ -137,38 +138,40 @@
 
         <div class="row g-5">
           <div class="col-lg-4">
-            <h3 class="footer-heading">About ZenBlog</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ab, perspiciatis beatae autem deleniti voluptate nulla a dolores, exercitationem eveniet libero laudantium recusandae officiis qui aliquid blanditiis omnis quae. Explicabo?</p>
-            <p><a href="about.html" class="footer-link-more">Learn More</a></p>
+            <h3 class="footer-heading">О команде Femimprover</h3>
+            <p>Мастера моих бригад проходят многомесячное обучение, проверку временем и имеют большой опыт. Я принимаю активное участие в жизненном цикле объектов и могу смело гарантировать качесво работы своих людей.</p>
+            <p><a href="about.html" class="footer-link-more">Читать дальше</a></p>
           </div>
           <div class="col-6 col-lg-2">
-            <h3 class="footer-heading">Navigation</h3>
+            <h3 class="footer-heading">Навигация</h3>
             <ul class="footer-links list-unstyled">
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
-              <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
-              <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-              <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+              {{-- <li><a href="#"><i class="bi bi-chevron-right"></i> Портфолио</a></li> --}}
+              <li><a href="{{ route('blog.post.index') }}"><i class="bi bi-chevron-right"></i> Портфолио</a></li>
+              <li><a href="#"><i class="bi bi-chevron-right"></i> Услуги</a></li>
+              <li><a href="#"><i class="bi bi-chevron-right"></i> О нас</a></li>
+              {{-- <li><a href="#"><i class="bi bi-chevron-right"></i> Работа у нас</a></li> --}}
+              <li><a href="#"><i class="bi bi-chevron-right"></i> Контакты</a></li>
             </ul>
           </div>
+
+          <!--   ======= Footer категории ======= -->
           <div class="col-6 col-lg-2">
-            <h3 class="footer-heading">Categories</h3>
+            <h3 class="footer-heading">Категории</h3>
             <ul class="footer-links list-unstyled">
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Culture</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sport</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Food</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Politics</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Celebrity</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Startups</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Travel</a></li>
+
+              @foreach($categories as $category)
+                  <li>
+                    <a href="{{  route('admin.category.show', $category->id)  }}">
+                      <i class="bi bi-chevron-right"></i> {{ $category->title }}
+                    </a>
+                  </li>
+              @endforeach
 
             </ul>
           </div>
 
           <div class="col-lg-4">
-            <h3 class="footer-heading">Recent Posts</h3>
+            <h3 class="footer-heading">Последние посты</h3>
 
             <ul class="footer-links footer-blog-entry list-unstyled">
               <li>
@@ -224,17 +227,8 @@
         <div class="row justify-content-between">
           <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
             <div class="copyright">
-              © Copyright <strong><span>ZenBlog</span></strong>. All Rights Reserved
+              Femimprover<br> профессиональная укладка тротуарной плитки
             </div>
-
-            <div class="credits">
-              <!-- All the links in the footer should remain intact. -->
-              <!-- You can delete the links only if you purchased the pro version. -->
-              <!-- Licensing information: https://bootstrapmade.com/license/ -->
-              <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-
           </div>
 
           <div class="col-md-6">
@@ -243,7 +237,7 @@
               <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
               <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
               <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-telegram"></i></a>
             </div>
 
           </div>
